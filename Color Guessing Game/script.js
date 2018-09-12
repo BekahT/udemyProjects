@@ -54,8 +54,6 @@ hardBtn.addEventListener("click", function(){
     };
 });
 
-
-
 // Assign the goal color to the title
 rgb.textContent = pickedColor;
 
