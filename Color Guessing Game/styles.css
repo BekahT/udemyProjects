@@ -4,7 +4,7 @@ body {
     font-family: "Montserrat", "Avenir";
 }
 
-h1 {
+h1, p {
     color: white;
     text-align: center;
     line-height: 1.1;
