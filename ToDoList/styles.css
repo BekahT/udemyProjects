@@ -1,9 +1,10 @@
-.done {
-    color: gray;
-    text-decoration: line-through;
-    opacity: 0.5;
+#container {
+    border: 2px solid black; 
+    width: 360px;
+    margin: 0 auto;
 }
 
-.selected {
-    color: green;
+.completed {
+    color: gray;
+    text-decoration: line-through;
 }

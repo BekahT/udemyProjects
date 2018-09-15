@@ -1,16 +1,22 @@
-var lis = document.querySelectorAll("li");
+// Add new ToDo
+$("input[type='text']").keypress(function(event){
+    if(event.which === 13){ //13 = Enter key
+        var todoText = $(this).val();
+        $(this).val("");
+        $("ul").append("<li> <span>X</span> " + todoText + "</li>");
+    }
+});
 
-for(var i = 0; i < lis.length; i++) {
-    lis[i].addEventListener("mouseover", function(){
-        this.classList.add("selected");
+// Toggle Check/Check Off Specific ToDo 
+$("ul").on("click", "li", function(event){
+    $(this).toggleClass("completed"); 
+    event.stopPropagation();
+});
+
+// Remove ToDo on delete click
+$("ul").on("click", "span", function(event){
+    $(this).parent().fadeOut(600, function(){
+        $(this).remove();
     });
-
-    lis[i].addEventListener("mouseout", function(){
-        this.classList.remove("selected");
-    });
-
-    lis[i].addEventListener("click", function(){
-        this.classList.toggle("done");
-    });
-};
-
+    event.stopPropagation();
+});
