@@ -13,6 +13,15 @@
     <!-- Inlude JS here to avoid CORS error -->
     <!-- Define inlined PaperScript associate it with myCanvas -->
     <script type="text/paperscript" canvas="myCanvas">
+    // Create a centered text item at the center of the view:
+    var text = new PointText({
+    	point: view.center,
+    	content: 'Press any letter key',
+    	justification: 'center',
+    	fillColor: 'white',
+    	fontSize: 15
+    });
+    
     // Object to define what sound and color is associated with each key
     var keyData = {
         q: {
