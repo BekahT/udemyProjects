@@ -38,6 +38,8 @@ passport.deserializeUser(User.deserializeUser());
 //Middleware to pass user to all templates
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
