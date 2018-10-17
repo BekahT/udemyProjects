@@ -5,20 +5,21 @@ var express     = require("express"),
 
 //All routes in this file have /campgrounds at the beginning
 
-// INDEX - show all campgrounds
+//INDEX - show all campgrounds
 router.get("/", function(req, res){
-   Campground.find({}, function(err, campgrounds){
-      if(err){
-          console.log(err);
-      } else {
-          res.render("campgrounds/index", {campgrounds : campgrounds});
-      }
-   });
+    // Get all campgrounds from DB
+    Campground.find({}, function(err, allCampgrounds){
+       if(err){
+           console.log(err);
+       } else {
+          res.render("campgrounds/index",{campgrounds: allCampgrounds, page: 'campgrounds'});
+       }
+    });
 });
 
-// CREATE - add new campground to DB
+//CREATE - add new campground to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
-    // Gets data from the new campground form and adds new campground to db
+// Gets data from the new campground form and adds new campground to db
     var name = req.body.name;
     var price = req.body.price;
     var image = req.body.image;
@@ -34,8 +35,9 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else {
-            // Redirect to campgrounds with GET request
-            req.flash("succes", "Campground successfully created");
+            //redirect back to campgrounds page
+            console.log(newlyCreated);
+            req.flash("success", "Campground successfully created");
             res.redirect("/campgrounds");
         }
     });
@@ -84,6 +86,7 @@ router.put("/:id", middleware.checkCampgroundOwnership, function(req, res){
         }
     });
 });
+
 
 // DESTROY - delete campground
 router.delete("/:id", middleware.checkCampgroundOwnership, function(req, res){
